@@ -6,6 +6,7 @@ Modal.setAppElement('#root'); // アプリのルート要素に合わせてく�
 
 function TelModal({ isOpen, onRequestClose }) {
   const [code, setCode] = useState('');
+  const [message, setMessage] = useState('');
 
   const handleChange = (e) => {
     setCode(e.target.value);
@@ -22,13 +23,12 @@ function TelModal({ isOpen, onRequestClose }) {
       });
       if (response.ok) {
         const data = await response.json();
-        console.log('コード再送信成功:', data);
-        // 必要に応じて追加の処理を行う
+        setMessage('コード再送信成功: ' + data.message);
       } else {
-        console.error('コード再送信失敗:', response.statusText);
+        setMessage('コード再送信失敗: ' + response.statusText);
       }
     } catch (error) {
-      console.error('エラーが発生しました:', error);
+      setMessage('エラーが発生しました: ' + error.message);
     }
   };
 
@@ -62,6 +62,7 @@ function TelModal({ isOpen, onRequestClose }) {
             コード再送信
           </button>
         </div>
+        {message && <p className="message">{message}</p>}
       </div>
     </Modal>
   );
