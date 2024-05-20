@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import TelModal from './TelModal';
+import './common.css'; // common.cssをインポート
 
-function TelSelect() {
-  const navigate = useNavigate();
+function TelSelect({ onBack }) {
   const [selectedTel, setSelectedTel] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -19,44 +18,45 @@ function TelSelect() {
     // スキップ処理をここに追加
   };
 
-  const handleBack = () => {
-    navigate(-1); // 一つ前のページに戻る
-  };
-
   return (
-    <div>
-      <div>
-        <label>
+    <div className="tel-select-container">
+      <div className="tel-select-group">
+        <label className="tel-select-label">
           <input
             type="radio"
             value="0000"
             checked={selectedTel === '0000'}
             onChange={handleChange}
+            className="tel-select-radio"
           />
           ***-****-0000
         </label>
-        <label>
+        <label className="tel-select-label">
           <input
             type="radio"
             value="1111"
             checked={selectedTel === '1111'}
             onChange={handleChange}
+            className="tel-select-radio"
           />
           ***-****-1111
         </label>
-        <label>
+        <label className="tel-select-label">
           <input
             type="radio"
             value="2222"
             checked={selectedTel === '2222'}
             onChange={handleChange}
+            className="tel-select-radio"
           />
           ***-****-2222
         </label>
       </div>
-      <button onClick={handleSend}>送信</button>
-      <button onClick={handleSkip}>スキップ</button>
-      <button onClick={handleBack}>戻る</button>
+      <div className="tel-select-button-group">
+        <button onClick={handleSend} className="tel-select-button">送信</button>
+        <button onClick={handleSkip} className="tel-select-button">スキップ</button>
+        <button onClick={onBack} className="tel-select-button">戻る</button>
+      </div>
       <TelModal isOpen={isModalOpen} onRequestClose={() => setIsModalOpen(false)} />
     </div>
   );

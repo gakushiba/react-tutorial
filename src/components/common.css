@@ -1,0 +1,247 @@
+/* 全体の設定 */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff4f4;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* フォームのスタイル */
+  .form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 80px); /* HeaderとFooterの高さを考慮 */
+    background-color: #fff4f4;
+  }
+  
+  .form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .form-title {
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-align: center;
+    color: #333;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .form-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .form-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #ff6f61;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .form-button:hover {
+    background-color: #ff4f3a;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  
+  /* TelSelectのスタイル */
+  .tel-select-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto;
+  }
+  
+  .tel-select-group {
+    margin-bottom: 15px;
+  }
+  
+  .tel-select-label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  
+  .tel-select-radio {
+    margin-right: 10px;
+  }
+  
+  .tel-select-button-group {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .tel-select-button {
+    padding: 10px 20px;
+    background-color: #ff6f61;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 5px;
+  }
+  
+  .tel-select-button:hover {
+    background-color: #ff4f3a;
+  }
+  
+  /* HeaderとFooterのスタイル */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .header-logo .logo-image {
+    height: 40px;
+  }
+  
+  .header-nav {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .header-link {
+    text-decoration: none;
+    color: #ff6f61;
+    font-weight: bold;
+  }
+  
+  .header-link:hover {
+    color: #ff4f3a;
+  }
+  
+  .footer {
+    background-color: #fff;
+    padding: 20px;
+    border-top: 1px solid #eee;
+    text-align: center;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .footer-logo-image {
+    height: 40px;
+  }
+  
+  .footer-nav {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .footer-link {
+    text-decoration: none;
+    color: #ff6f61;
+    font-weight: bold;
+  }
+  
+  .footer-link:hover {
+    color: #ff4f3a;
+  }
+  
+  .footer-address {
+    font-size: 12px;
+    color: #666;
+  }
+  /* モーダルのスタイル */
+.ReactModal__Overlay {
+    background-color: rgba(0, 0, 0, 0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .ReactModal__Content {
+    position: relative;
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+.modal-header {
+  margin-bottom: 20px;
+  font-size: 24px;
+  text-align: center;
+}
+
+.modal-input {
+  margin-bottom: 20px;
+  padding: 10px;
+  width: 100%;
+  max-width: 300px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+  
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* ボタン間のスペース */
+  width: 200px; /* 親コンテナの幅を設定 */
+  margin: 0 auto; /* 中央に配置するための設定（オプション） */
+}
+
+.modal-button {
+  padding: 10px 20px;
+  background-color: #ff6f61;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100%; /* ボタンの幅を親コンテナに合わせる */
+  box-sizing: border-box; /* パディングとボーダーを幅に含める */
+}
+
+.modal-button:hover {
+  background-color: #ff4f3a;
+}

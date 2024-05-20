@@ -1,83 +1,51 @@
-import {useState, useRef} from "react";
-import TodoList from "./TodoList";
-import FetchHello from './components/FetchHello';
-import { useNavigate } from "react-router-dom";
+// import React from 'react'
+// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// import InputForm from "./components/InputForm";
+// import TelSelect from "./components/TelSelect";
+// import Header from './components/Header';
+// import Footer from './components/Footer';
 
-import React from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import InputForm from "./components/InputForm";
-import TelSelect from "./components/TelSelect";
+// function App() {
+//   return (
+//     <Router>
+//       <div className="app-container">
+//         <Header />
+//         <main className="main-content">
+//           <Routes>
+//             <Route path="/" element={<InputForm />} />
+//             <Route path="/tel" element={<TelSelect />} />
+//           </Routes>
+//         </main>
+//         <Footer />
+//       </div>
+//     </Router>
+//   );
+// }
 
-const App = () => {
+
+import React, { useState } from 'react';
+import InputForm from './components/InputForm';
+import TelSelect from './components/TelSelect';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import './components/common.css';
+
+function App() {
+  const [showTelSelect, setShowTelSelect] = useState(false);
+
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<InputForm />} />
-        <Route path="/tel" element={<TelSelect />} />
-      </Routes>
-    </Router>
+    <div className="app-container">
+      <Header />
+      <main className="main-content">
+        {showTelSelect ? (
+          <TelSelect onBack={() => setShowTelSelect(false)} />
+        ) : (
+          <InputForm onSubmit={() => setShowTelSelect(true)} />
+        )}
+      </main>
+      <Footer />
+    </div>
   );
 }
 
 export default App;
-
-// function App() {
-//   const [todos, setTodos] = useState([{id: 1, name: "Todo1", completed: true}]);
-
-//   const todoNameRef = useRef();
-
-//   const handleAddTodo = () => {
-//     // タスク追加
-//     const name = todoNameRef.current.value;
-//     setTodos((prevTodos) => {
-//       return [...prevTodos, {id:"1", name: name, completed: false }];
-//     });
-//   };
-
-//   const toggleTodo = (id) => {
-//     const newTodos = [...todos];
-//     const todo = newTodos.find((todo) => todo.id === id);
-//     todo.completed = !todo.completed;
-//     setTodos(newTodos);
-//     };
-  
-//   const handleClear = (id) => {
-//     const newTodos = todos.filter((todo) => !todo.completed);
-//     setTodos(newTodos);
-//   } ;
-
-//   return(
-//     <div>
-//       <TodoList todos={todos} toggleTodo={toggleTodo} />
-//       <input type="text" ref={todoNameRef} />
-//       <button onClick={handleAddTodo}>タスクを追加</button>
-//       <button onClick={handleClear}>完了タスクの削除</button>
-//       <div>残タスク：{todos.filter((todo) => !todo.completed).length}</div>
-//     </div>
-//   );
-// }
-
-// function API() {
-//   const [message, setMessage] = useState('');
-//   const [loading, setLoading] = useState(false);
-
-//   const fetchData = () => {
-//     setLoading(true);
-//     // JSONPlaceholderのモックAPIを使用
-//     fetch('https://jsonplaceholder.typicode.com/posts/1')
-//       .then(response => response.json())
-//       .then(data => setMessage(data.title))  // 投稿のタイトルを表示
-//       .catch(error => console.error('Error fetching data: ', error))
-//       .finally(() => setLoading(false));
-//   };
-
-//   return (
-//     <div>
-//       <button onClick={fetchData} disabled={loading}>
-//         {loading ? '読み込み中...' : 'APIを呼び出す'}
-//       </button>
-//       {message && <p>APIからのメッセージ: {message}</p>}
-//     </div>
-//   );
-// }
-// export default API;
