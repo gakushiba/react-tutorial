@@ -13,7 +13,7 @@ function TelModal({ isOpen, onRequestClose }) {
   };
 
   const handleSubmit = () => {
-    window.location.href = 'https://member-stg.beenavi.jp/login';
+    window.location.href = 'https://member.beenavi.jp/login';
   };
 
   const handleResendCode = async () => {
