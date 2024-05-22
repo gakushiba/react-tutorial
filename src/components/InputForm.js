@@ -1,64 +1,35 @@
-// InputForm.js
-// import React from 'react';
-// import { useForm } from 'react-hook-form';
-// import { zodResolver } from '@hookform/resolvers/zod';
-// import { formSchema } from './Validation';
-// import './common.css';
-
-// function InputForm({ onSubmit }) {
-//   const { register, handleSubmit, formState: { errors } } = useForm({
-//     resolver: zodResolver(formSchema),
-//   });
-
-//   const onSubmitForm = (data) => {
-//     onSubmit(data);
-//   };
-
-//   return (
-//     <div className="form-container">
-//       <form onSubmit={handleSubmit(onSubmitForm)} className="form">
-//         <h2 className="form-title">検針票番号入力</h2>
-//         <div className="form-group">
-//           <label className="form-label">検針票番号 *</label>
-//           <input
-//             type="text"
-//             {...register('inspectionNumber')}
-//             className="form-input"
-//           />
-//           {errors.inspectionNumber && <p className="error-message">{errors.inspectionNumber.message}</p>}
-//         </div>
-//         <div className="form-group">
-//           <label className="form-label">担当営業所 *</label>
-//           <input
-//             type="text"
-//             {...register('office')}
-//             className="form-input"
-//           />
-//           {errors.office && <p className="error-message">{errors.office.message}</p>}
-//         </div>
-//         <button type="submit" className="form-button">送信</button>
-//       </form>
-//     </div>
-//   );
-// }
-
-// export default InputForm;
-
-// 以下、tailwind css を使用
-import React from 'react';
-import { useForm } from 'react-hook-form';
+import React, { useEffect } from 'react';
+import { useForm, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { formSchema } from './Validation';
 import '../index.css';  // Tailwind CSSを適用するためにインポート
 
 function InputForm({ onSubmit }) {
-  const { register, handleSubmit, formState: { errors } } = useForm({
+  const { register, handleSubmit, formState: { errors }, control } = useForm({
     resolver: zodResolver(formSchema),
   });
 
   const onSubmitForm = (data) => {
     onSubmit(data);
   };
+
+  const inspectionNumber = useWatch({
+    control,
+    name: 'inspectionNumber',
+    defaultValue: '',
+  });
+
+  const office = useWatch({
+    control,
+    name: 'office',
+    defaultValue: '',
+  });
+
+  useEffect(() => {
+    if (inspectionNumber.length >= 9 && office.length >= 3) { // 条件を設定
+      handleSubmit(onSubmitForm)(); // フォームを自動送信
+    }
+  }, [inspectionNumber, office, handleSubmit, onSubmitForm]);
 
   return (
     <div className="flex justify-center items-center h-[calc(100vh-80px)] bg-[#fff4f4]">

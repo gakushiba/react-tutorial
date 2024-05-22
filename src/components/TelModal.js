@@ -12,23 +12,29 @@ function TelModal({ isOpen, onRequestClose }) {
     setCode(e.target.value);
   };
 
-  const handleSubmit = () => {
-    window.location.href = 'https://member.beenavi.jp/login';
+  const handleSubmit = (ok) => {
+    if (ok) {
+      // console.log('ok');
+      //window.location.href = 'https://member.beenavi.jp/login';
+    } else {
+      // console.log('error');
+      //window.location.href = 'error';
+    }
   };
 
   const handleResendCode = async () => {
     try {
-      const response = await fetch('https://react-tutorial-nu-roan.vercel.app/api/hello', {
+      const response = await fetch('https://service-api-stg.beenavi.jp/api/v2/mtbc/ping/', {
         method: 'GET', // APIのメソッドタイプに応じて変更（GET, POSTなど）
       });
       if (response.ok) {
         const data = await response.json();
-        setMessage('コード再送信成功: ' + data.message);
+        setMessage('コード再送信成功: ' + data.result);
       } else {
         setMessage('コード再送信失敗: ' + response.statusText);
       }
     } catch (error) {
-      setMessage('エラーが発生しました: ' + error.message);
+      setMessage('エラーが発生しました: ' + error.result);
     }
   };
 
@@ -44,7 +50,7 @@ function TelModal({ isOpen, onRequestClose }) {
         />
         <div className='button-container'>
           <button 
-            onClick={handleSubmit} 
+            onClick={handleSubmit(true)} 
             className="modal-button"
           >
             送信
@@ -60,6 +66,12 @@ function TelModal({ isOpen, onRequestClose }) {
             className="modal-resend-button"
           >
             コード再送信
+          </button>
+          <button 
+            onClick={handleSubmit(false)} 
+            className="modal-button"
+          >
+            送信
           </button>
         </div>
         {message && <p className="message">{message}</p>}
